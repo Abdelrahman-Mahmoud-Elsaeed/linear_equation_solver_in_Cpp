@@ -44,7 +44,7 @@ This UML diagram presents the detailed architecture of the system, including all
 
 It reflects the full internal structure of the solver and how objects interact during execution.
 
-![UML Diagram - Detailed Model](./Linear Equations Solving/linear__system_model_details.png)
+![UML Diagram - Detailed Model](./linear__system_model_details.png)
 
 ---
 
@@ -54,7 +54,7 @@ This UML diagram shows a simplified version of the system design, focusing only 
 
 It provides a clearer high-level overview without low-level implementation details.
 
-![UML Diagram - Simplified Model](./Linear Equations Solving/linear_system_equation_simple.png)
+![UML Diagram - Simplified Model](./linear_system_equation_simple.png)
 
 ---
 
@@ -62,7 +62,7 @@ It provides a clearer high-level overview without low-level implementation detai
 
 The following image demonstrates how the program operates in **Normal Mode**, where the user manually enters equations and interacts with the system using commands.
 
-![Normal Mode Example](./Linear Equations Solving/normal_mode_example.png)
+![Normal Mode Example](./normal_mode_example.png)
 
 ---
 
