@@ -15,7 +15,82 @@ OpenMP to parallelize the elimination step.
  * Mostafa Maged Najdy Mahran (ID:11217)
  
  * Alyaa Elsayed Elsayed Ali (ID:12228)
+ 
+
+# Download Instructions
+
+You can download the project from GitHub using one of the following methods:
+
+## Option 1 — Clone Using Git (Recommended)
+
+Make sure Git is installed on your system.
+
+1. Open your terminal.
+2. Run the following command:
+
+```bash
+git clone https://github.com/Abdelrahman-Mahmoud-Elsaeed/linear_equation_solver_in_Cpp.git
+```
+
+3. Navigate into the project folder:
+
+```bash
+cd linear_equation_solver_in_Cpp
+```
+
 ---
+
+## Option 2 — Download ZIP File
+
+1. Go to the repository page:
+   [https://github.com/Abdelrahman-Mahmoud-Elsaeed/linear_equation_solver_in_Cpp](https://github.com/Abdelrahman-Mahmoud-Elsaeed/linear_equation_solver_in_Cpp)
+
+2. Click the **Code** button.
+
+3. Select **Download ZIP**.
+
+4. Extract the ZIP file.
+
+5. Open a terminal inside the extracted folder.
+
+---
+
+#  Build Instructions (Windows / Visual Studio)
+
+It is highly recommended to build the project in **Release** mode to ensure maximum performance during benchmarking.
+
+1. Open your terminal in the root directory of the project.
+2. Create a build directory and navigate into it:
+
+```bash
+mkdir build
+cd build
+```
+
+3. Generate the build files:
+
+```bash
+cmake ..
+```
+
+4. Compile the project in Release mode:
+
+```bash
+cmake --build . --config Release
+```
+
+---
+
+# Usage
+
+After a successful build, run the executable:
+
+```bash
+.\Release\LinearSolver.exe
+```
+
+
+
 
 ## Features
 
@@ -27,7 +102,6 @@ OpenMP to parallelize the elimination step.
 * Gaussian elimination with partial pivoting and back substitution.
 * Parallel elimination loop uses OpenMP (if enabled at compile time).
 
----
 
 
 ---
