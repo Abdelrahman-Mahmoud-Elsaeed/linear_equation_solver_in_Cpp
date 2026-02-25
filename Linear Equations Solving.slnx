@@ -5,8 +5,8 @@
   </Configurations>
   <Folder Name="/Solution Items/">
     <File Path=".gitignore" />
+    <File Path="CMakeLists.txt" />
     <File Path="Linear Equations Solving/benchmark_mode_example.png" />
-    <File Path="Linear Equations Solving/CMakeLists.txt" />
     <File Path="Linear Equations Solving/linear_system_equation_simple.png" />
     <File Path="Linear Equations Solving/linear__system_model_details.png" />
     <File Path="Linear Equations Solving/normal_mode_example.png" />
