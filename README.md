@@ -7,11 +7,14 @@ OpenMP to parallelize the elimination step.
 
 
 # Authors
- * Abdelrahman Mahmoud Elsaeed 11206
+
+ * Abdelrahman Mahmoud Elsaeed (ID:11206)
   
- * Ahmed Adel Eltantawy Atwa 11207
+ * Ahmed Adel Eltantawy Atwa (ID:11207)
   
- * Mostafa Maged Najdy Mahran 11217
+ * Mostafa Maged Najdy Mahran (ID:11217)
+ 
+ * Alyaa Elsayed Elsayed Ali (ID:12228)
 ---
 
 ## Features
