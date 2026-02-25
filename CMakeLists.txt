@@ -7,10 +7,19 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(OpenMP)
 
+set(SRC_DIR "Linear Equations Solving")
 
-add_executable(LinearSolver "Linear Equations Solving.cpp")
+add_executable(LinearSolver 
+    "${SRC_DIR}/Linear Equations Solving.cpp"
+    "${SRC_DIR}/Command.cpp"
+    "${SRC_DIR}/Equation.cpp"
+    "${SRC_DIR}/EquationGenerator.cpp"
+    "${SRC_DIR}/LinearSystem.cpp"
+    "${SRC_DIR}/Matrix.cpp"
+    "${SRC_DIR}/Vector.cpp"
+)
 
-target_include_directories(LinearSolver PRIVATE "Header Files")
+target_include_directories(LinearSolver PRIVATE "${SRC_DIR}")
 
 if(OpenMP_CXX_FOUND)
     message(STATUS "OpenMP found. Parallel elimination is enabled.")
