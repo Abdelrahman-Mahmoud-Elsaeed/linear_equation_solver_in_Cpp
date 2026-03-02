@@ -8,14 +8,8 @@
 
 using namespace std;
 
-// Vector<string> v(50);
-// Vector<float> 
-// Vector<int> 
-// Vector<char> 
 
 
-
-// int x = 0
 
 template <typename T>
 class Vector {

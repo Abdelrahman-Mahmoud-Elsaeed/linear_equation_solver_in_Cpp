@@ -17,46 +17,6 @@ private:
     int rows;
     int cols;
 
-    struct TermItem {
-        int id;
-        T value;
-    };
-
-    void swapItems(TermItem& a, TermItem& b) {
-        TermItem temp = a;
-        a = b;
-        b = temp;
-    }
-
-    // --- 3-Way QuickSort (Handles Duplicates Fast) ---
-    void quickSort3Way(TermItem* arr, int low, int high) {
-        if (low >= high) return;
-
-        int lt = low;        
-        int gt = high;      
-        int i = low + 1;     
-
-        int pivot = arr[low].id;
-
-        while (i <= gt) {
-            if (arr[i].id < pivot) {
-                swapItems(arr[lt], arr[i]);
-                lt++;
-                i++;
-            }
-            else if (arr[i].id > pivot) {
-                swapItems(arr[i], arr[gt]);
-                gt--;
-            }
-            else {
-                i++;
-            }
-        }
-
-        quickSort3Way(arr, low, lt - 1);
-        quickSort3Way(arr, gt + 1, high);
-    }
-
 public:
 
     Matrix(int r, int c) {
@@ -84,31 +44,6 @@ public:
         return rowPtrs[index];
     }
 
-    // --- Sort Function ---
-    void sortRow(int row) {
-        if (row < 0 || row >= rows) return;
-
-        TermItem* tempItems = new TermItem[cols];
-
-        for (int j = 0; j < cols; j++) {
-            tempItems[j].value = rowPtrs[row][j];
-            tempItems[j].id = getTermSortID(rowPtrs[row][j]);
-        }
-
-        quickSort3Way(tempItems, 0, cols - 1);
-
-        for (int j = 0; j < cols; j++) {
-            rowPtrs[row][j] = tempItems[j].value;
-        }
-
-        delete[] tempItems;
-    }
-
-    void sortAllRows() {
-        for (int i = 0; i < rows; i++) {
-            sortRow(i);
-        }
-    }
 
     void swapRows(int r1, int r2) {
         if (r1 == r2) return;
