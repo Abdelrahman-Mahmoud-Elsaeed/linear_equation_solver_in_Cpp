@@ -14,18 +14,16 @@ class Command
 private:
     LinearSystem<double>* sys;
 
-    // --- Helper: Print Row ---
     void printRow(int rowIndex) {
         Matrix<double>* A = sys->getMatrix();
         Vector<double>* B = sys->getConstants();
         int n = sys->getSize();
 
-        // Limit output for massive systems
         int limit = (n > 20) ? 20 : n;
 
         for (int j = 0; j < limit; j++) {
             double val = (*A)[rowIndex][j];
-            if (val == 0) continue; // Skip zero terms for readability
+            if (val == 0) continue; 
 
             if (j > 0 && val >= 0) cout << "+";
             cout << val << "x" << (j + 1) << " ";
@@ -35,44 +33,35 @@ private:
         cout << "= " << (*B)[rowIndex] << endl;
     }
 
-    // --- Helper: Calculate Determinant (On Demand Only) ---
-    // Optimization: This creates a copy, solves it, returns result.
-    // It does NOT affect the main 'sys' matrix.
+
     double calculateDeterminant() {
         int n = sys->getSize();
         Matrix<double>* mainMat = sys->getMatrix();
 
-        // 1. Create a temporary matrix to destroy
         Matrix<double> temp(n, n);
 
-        // 2. Fast Copy
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 temp[i][j] = (*mainMat)[i][j];
             }
         }
 
-        // 3. Gaussian Elimination (on temp)
         double det = 1.0;
         for (int i = 0; i < n; i++) {
             int pivot = i;
-            // Find pivot
             for (int k = i + 1; k < n; k++) {
                 if (abs(temp[k][i]) > abs(temp[pivot][i])) pivot = k;
             }
 
-            // Swap
             if (pivot != i) {
                 temp.swapRows(i, pivot);
                 det *= -1;
             }
 
-            // Zero Check
             if (abs(temp[i][i]) < 1e-9) return 0;
 
             det *= temp[i][i];
 
-            // Eliminate
             for (int k = i + 1; k < n; k++) {
                 double factor = temp[k][i] / temp[i][i];
                 for (int j = i; j < n; j++) {
@@ -101,7 +90,6 @@ public:
 
             if (cmd == "exit") break;
 
-            // --- HELP COMMAND ---
             if (cmd == "help") {
                 cout << "\n--- Available Commands ---\n"
                     << left << setw(35) << "help" << "- Show this help message\n"
@@ -117,7 +105,6 @@ public:
                     << left << setw(35) << "solve" << "- Solve the linear system and display the result\n"
                     << "--------------------------\n";
             }
-            // --- LEVEL 1: Basic View ---
             else if (cmd == "num_vars") {
                 cout << sys->getSize() << endl;
             }
@@ -137,7 +124,6 @@ public:
                         int colIdx = stoi(varName.substr(xPos + 1)) - 1;
                         Matrix<double>* A = sys->getMatrix();
                         if (colIdx >= 0 && colIdx < sys->getSize()) {
-                            // Limit output
                             int limit = (sys->getSize() > 20) ? 20 : sys->getSize();
                             for (int i = 0; i < limit; i++) cout << (*A)[i][colIdx] << endl;
                             if (sys->getSize() > 20) cout << "..." << endl;
@@ -147,7 +133,6 @@ public:
                 }
             }
 
-            // --- LEVEL 2: Row Operations ---
             else if (cmd == "add" || cmd == "subtract") {
                 int i, j;
                 if (ss >> i >> j) {
@@ -200,7 +185,6 @@ public:
                 }
             }
 
-            // --- LEVEL 3: Determinant & Solving ---
             else if (cmd == "D") {
                 cout << "Displaying matrix (limited view)..." << endl;
                 sys->printSolution();
