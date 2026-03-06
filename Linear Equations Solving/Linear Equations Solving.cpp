@@ -15,7 +15,6 @@ int main() {
     cin.ignore();
 
     if (mode == 2) {
-        // --- benchmark mode ---
         int n;
         int choice;
 
@@ -49,7 +48,6 @@ int main() {
             cout << "Generation & Parsing Time: " << diff.count() << " seconds." << endl;
         }
         else {
-            // Manual Input
             cout << "Enter " << n << " equations:" << endl;
             for (int i = 0; i < n; i++) {
                 string line;
@@ -58,7 +56,7 @@ int main() {
             }
         }
 
-        // --- SOLVE ---
+
         cout << "-----------------------------------" << endl;
 #ifdef _OPENMP
         cout << "Parallel Mode: ON" << endl;
@@ -83,7 +81,7 @@ int main() {
         return 0;
     }
     else {
-        // --- normal interactive mode ---
+
         int n;
         cout << "Enter number of variables: ";
         cin >> n;

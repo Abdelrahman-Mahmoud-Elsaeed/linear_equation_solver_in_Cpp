@@ -24,7 +24,7 @@ public:
 
         for (int i = 0; i < density; i++) {
             int coeff = getRand(-100, 100);
-            int varIdx = getRand(1, numVars); // 1-based index
+            int varIdx = getRand(1, numVars); 
 
             if (coeff == 0) continue;
             if (i > 0 && coeff > 0) ss << "+";

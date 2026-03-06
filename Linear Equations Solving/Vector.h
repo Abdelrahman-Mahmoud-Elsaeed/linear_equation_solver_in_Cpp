@@ -19,7 +19,7 @@ private:
     int capacity;  
 
 public:
-    // --- 1. Constructor ---
+
     explicit Vector(int n = 0) {
         if (n < 0) n = 0;
         size = n;
@@ -32,12 +32,12 @@ public:
         }
     }
 
-    // --- 2. Destructor ---
+
     ~Vector() {
         delete[] data;
     }
 
-    // --- 3. Copy Constructor ---
+
     Vector(const Vector& other) {
         size = other.size;
         capacity = other.capacity;
@@ -48,7 +48,7 @@ public:
         }
     }
 
-    // --- 4. Assignment Operator ---
+
     Vector& operator=(const Vector& other) {
         if (this != &other) {
             if (capacity < other.size) {
@@ -64,7 +64,6 @@ public:
         }
         return *this;
     }
-    // --- 5. Operator [] ---
     T& operator[](int index) {
         if (index < 0 || index >= size) {
             cerr << "Vector index out of bounds! Index: " << index << ", Size: " << size << endl;
@@ -80,9 +79,7 @@ public:
         }
         return data[index];
     }
-     // arr(50)
-     // 
-    // --- 6. Push (Optimized) ---
+
     void push(const T& input) {
         if (size >= capacity) {
             int newCapacity = (capacity == 0) ? 2 : (capacity * 3) / 2;
@@ -93,7 +90,6 @@ public:
         size++;
     }
 
-    // --- 7. Resize ---
     void resize(int newCapacity) {
         if (newCapacity < size) return; 
 
@@ -108,7 +104,6 @@ public:
         capacity = newCapacity;
     }
 
-    // --- Getters ---
     int getSize() const { return size; }
     int getCapacity() const { return capacity; }
     bool isEmpty() const { return size == 0; }

@@ -48,7 +48,6 @@ public:
     void swapRows(int r1, int r2) {
         if (r1 == r2) return;
 
-        // Just swap the addresses
         T* temp = rowPtrs[r1];
         rowPtrs[r1] = rowPtrs[r2];
         rowPtrs[r2] = temp;
@@ -66,7 +65,6 @@ public:
 
 
 
-    // --- Print ---
     void print() const {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {

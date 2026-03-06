@@ -103,7 +103,6 @@ public:
             }
         }
 
-        // 4. Back Substitution
         for (int i = n - 1; i >= 0; i--) {
             double sum = 0;
             double* rowPtr = A[i];
@@ -113,7 +112,6 @@ public:
 
         return true;
     }
-    // --- Getters ---
 
     Matrix<T>* getMatrix() { return &A; }
     Vector<T>* getConstants() { return &B; }
