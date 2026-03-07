@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <stdexcept>
 #include "Vector.h"
 
 using namespace std;
@@ -22,20 +23,20 @@ private:
     bool isDigit(char c) {
         return (c >= '0' && c <= '9');
     }
+
     void addOrUpdateTerm(int index, double val) {
         int pos = index - 1;
 
-        if (pos < 0) return; 
-
+        if (pos < 0) return;
 
         while (terms.getSize() <= pos) {
             terms.push({ terms.getSize() + 1, 0.0 });
         }
 
         terms[pos].value += val;
-
         terms[pos].index = index;
     }
+
     void parseTerm(string token, bool isRHS) {
         if (token.empty()) return;
 
@@ -66,24 +67,42 @@ public:
 
     Equation() : terms(0), constant(0) {}
 
-    void parse(string line) {
-        string leftPart, rightPart;
+    bool parse(string line) {
+        int eqCount = 0;
+        for (char c : line) {
+            if (c == '=') {
+                eqCount++;
+            }
+            if (!isDigit(c) && c != ' ' && c != '+' && c != '-' &&
+                c != '=' && c != '.' && c != 'x') {
 
+                cout << "\n[Error] Invalid character detected: '" << c << "'\n"
+                    << "Only numbers, standard variables (x1, x2), and operators are allowed.\n";
+                return false;
+            }
+        }
+
+        if (eqCount == 0) {
+            cout << "\n[Error] Invalid format: Missing '=' sign in equation.\n";
+            return false;
+        }
+        if (eqCount > 1) {
+            cout << "\n[Error] Invalid format: Multiple '=' signs detected.\n";
+            return false;
+        }
+
+        string leftPart, rightPart;
         size_t eqPos = line.find('=');
-        if (eqPos == string::npos) {
-            leftPart = line;
-        }
-        else {
-            leftPart = line.substr(0, eqPos);
-            rightPart = line.substr(eqPos + 1);
-        }
+        leftPart = line.substr(0, eqPos);
+        rightPart = line.substr(eqPos + 1);
 
         auto tokenize = [&](const string& s, bool isRight) {
             string currentTerm;
             currentTerm.reserve(16);
 
             for (char c : s) {
-                if (c == ' ') continue; 
+                if (c == ' ') continue;
+
                 if ((c == '+' || c == '-') && !currentTerm.empty()) {
                     parseTerm(currentTerm, isRight);
                     currentTerm.clear();
@@ -95,11 +114,19 @@ public:
             if (!currentTerm.empty()) {
                 parseTerm(currentTerm, isRight);
             }
-        };
-        tokenize(leftPart, false);
-        tokenize(rightPart, true);
-    }
+            };
 
+        try {
+            tokenize(leftPart, false);
+            tokenize(rightPart, true);
+        }
+        catch (const exception& e) {
+            cout << "\n[Error] Failed to parse terms. Please check your math syntax.\n";
+            return false; 
+        }
+
+        return true;
+    }
 
     Vector<Term>& getTerms() { return terms; }
 

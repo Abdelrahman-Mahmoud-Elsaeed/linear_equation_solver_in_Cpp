@@ -36,14 +36,17 @@ public:
     }
 
 
-    void addEquation(const string& input) {
+    bool addEquation(const string& input) {
         if (currentEqIndex >= n) {
             cerr << "Error: Too many equations added!" << endl;
-            return;
+            return false;
         }
 
         Equation eq;
-        eq.parse(input);
+
+        if (!eq.parse(input)) {
+            return false;
+        }
 
         B[currentEqIndex] = (T)eq.getConstant();
 
@@ -57,7 +60,9 @@ public:
                 A[currentEqIndex][colIndex] += (T)t.value;
             }
         }
+
         currentEqIndex++;
+        return true;
     }
 
     bool solve() {
@@ -82,7 +87,7 @@ public:
                 std::swap(bPtr[i], bPtr[pivotRow]);
             }
 
-            if (abs(A[i][i]) < 1e-9) return false;
+            if (abs(A[i][i]) < EPSILON) return false;
 
             double* pivotRowPtr = A[i];
             double pivotDiag = pivotRowPtr[i];
