@@ -196,22 +196,40 @@ Header Files/
 
 ## Usage
 
-Run the executable and choose one of two modes:
+Run the executable and choose one of three modes:
 
-1. **Normal**:
-   * Specify number of variables and type each equation in the form
+1. **Normal Mode**
+   * Specify the number of variables and type each equation in the form  
      `3x1 + 4x2 = 9`.
-   * After loading, commands such as `solve`, `print`, etc. are available via
-     the `Command` interface.
+   * After loading the system, commands such as `solve`, `print`, etc. are available via the `Command` interface.
 
-2. **Benchmark**:
-   * Enter the system size and select input method:
-     * Manual entry (same as normal mode).
-     * Stream auto-generate: equations are produced and added one by one while
-       timing the parsing step.
-   * Solver timing is displayed along with optional solution output for small
-     systems.
+2. **Benchmark Mode**
+   * Enter the system size and select the input method:
+     * **Manual entry** – same as Normal Mode.
+     * **Stream auto-generate** – equations are generated automatically and added one by one while timing the parsing step.
+   * Solver timing is displayed along with optional solution output for small systems.
 
+3. **Test Mode**
+   * Runs an automated test suite designed to validate the parser and solver behavior across different scenarios.
+   * The tests cover multiple categories including:
+     * Standard solvable systems
+     * Implicit coefficients (e.g., `x1` instead of `1x1`)
+     * Unordered variables
+     * Missing variables
+     * Decimal and negative coefficients
+     * Inconsistent systems (no solution)
+     * Dependent systems (infinite solutions)
+     * Invalid equation formats (missing `=`, multiple `=`, invalid characters)
+
+   * Example test cases executed:
+     - **Standard 2×2 System**
+     - **Implicit Coefficients**
+     - **Unordered Variables**
+     - **Missing Variables**
+     - **Decimals and Negatives**
+     - **Inconsistent System**
+     - **Dependent System**
+     - **Invalid Input Format Tests**
 ---
 
 ## Algorithm
