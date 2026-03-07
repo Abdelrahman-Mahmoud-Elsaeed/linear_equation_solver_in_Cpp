@@ -14,7 +14,7 @@ OpenMP to parallelize the elimination step.
   
  * Mostafa Maged Najdy Mahran (ID:11217)
  
- * Alyaa Elsayed Elsayed Ali (ID:12228)
+ * Alyaa Elsayed Elsayed Ali Taha (ID:12228)
  
 
 # Download Instructions
